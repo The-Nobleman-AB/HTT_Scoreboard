@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scorecard</title>
+  <style>
+    @font-face {
+      font-family: 'INDIA2023';
+      src: url('INDIA2023.ttf') format('truetype');
+    }
+
+    body {
+      font-family: 'INDIA2023', Arial, sans-serif;
+      max-width: 1200px;;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #faceff;
+      Font-size:20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, button {
+      margin-top: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    p {
+      margin: 5px 0;
+    }
+
+    span {
+      font-weight: bold;
+    }
+
+    button {
+      padding: 8px;
+      font-size: 20px;
+      cursor: pointer;
+      background-color:#2D036E; color:#DF329E;
+      border: none;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      color:#2D036E; background-color:#DF329E;
+    }
+
+    #setScores {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    #resetBtn {
+      margin-top: 20px;
+      background-color: #f44336;
+    }
+
+    #resetBtn:hover {
+      background-color: #d32f2f;
+    }
+
+    #teamNamesInput {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #teamNamesInput input {
+      width: 45%;
+    }
+
+    #updateBox {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 10px;
+      background-color: #DF329E;
+      color: #2D036E;
+      padding: 0.5px;
+      border-radius: 5px;
+      Width:100%;
+    }
+
+     re{
+	    color: #DF329E;
+	}
+
+	bl{
+	    color: #2D036E;
+	}
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 style="color:#2D036E; background-color:#DF329E;">WFC-HTT HAND TABLE TENNIS WORLD CUP 2023</h1>
+  </header>
+
+  <bl><h2><span id="matchNumber" contenteditable="true">MATCH NO. 1</span></h2></bl>
+  
+  <bl>TOSS:</bl>
+  <re><span id="matchNumber" contenteditable="true">Edit Toss Result</span></re>
+
+  <p><re>Match Winner: </re><bl><span id="matchWinner" contenteditable="true">Game in Progress</span></p></bl>
+
+  <table>
+    <tr>
+      <th style="background-color:#2D036E; color:#DF329E; font-size:30px;" id="teamALabel" contenteditable="true">TEAM A</th>
+      <th style="color:#2D036E; background-color:#DF329E; font-size:30px;">VS</th>
+      <th style="background-color:#2D036E; color:#DF329E; font-size:30px;" id="teamBLabel" contenteditable="true">TEAM B</th>
+    </tr>
+    <tr>
+
+<td><p style="color:#2D036E; background-color:#DF329E; font-size:22px;"><span id="Playername1" contenteditable="true">Enter Player Name</span></p></td>
+<td><button style="color:black;" id="resetBtn" onclick="resetScore()">RESET</button></td>
+<td><p style="color:#2D036E; background-color:#DF329E; font-size:22px;"><span id="Playername2" contenteditable="true">Enter Player Name</span></p></td>
+
+<tr>
+
+      <td>
+	
+        <re><p><H style="font-size:170px;"><span id="teamAPoints" contenteditable="true">0</span></p></H></re>
+	<bl><p><H style="font-size:80px;"><span id="teamASetWin" contenteditable="true">0</span></p></H></bl>
+        <button style="font-family: 'INDIA2023', Arial, sans-serif;" onclick="updateScore('teamAPoints', 'teamBPoints', 'teamASetWin')">+1 PTS</button>
+      </td>
+      <td></td>
+      <td>
+	
+        <re><p><H style="font-size:170px;"><span id="teamBPoints" contenteditable="true">0</span></p></H></re>
+        <bl><p><H style="font-size:80px;"><span id="teamBSetWin" contenteditable="true">0</span></p></H></bl>
+        <button style="font-family: 'INDIA2023', Arial, sans-serif;" onclick="updateScore('teamBPoints', 'teamAPoints', 'teamBSetWin')">+1 PTS</button>
+      </td>
+    </tr>
+  </table>
+
+
+  <script>
+    function updateScore(teamPoints, opponentPoints, teamSetWin) {
+      var pointsElement = document.getElementById(teamPoints);
+      var opponentPointsElement = document.getElementById(opponentPoints);
+      var setWinElement = document.getElementById(teamSetWin);
+      var setScoresElement = document.getElementById('setScores');
+      var matchWinnerElement = document.getElementById('matchWinner');
+
+      var points = parseInt(pointsElement.innerText);
+      var opponentPointsValue = parseInt(opponentPointsElement.innerText);
+
+      if (points === 10 && opponentPointsValue < 10) {
+        setWinElement.innerText = parseInt(setWinElement.innerText) + 1;
+        resetPoints();
+        updateSetScores();
+      } else if (points >= 10 && opponentPointsValue >= 10) {
+        if (Math.abs(points - opponentPointsValue) >= 2) {
+          setWinElement.innerText = parseInt(setWinElement.innerText) + 1;
+          resetPoints();
+          updateSetScores();
+        } else {
+          pointsElement.innerText = points + 1;
+        }
+      } else {
+        pointsElement.innerText = points + 1;
+      }
+
+      checkMatchWinner(matchWinnerElement);
+    }
+
+    function updateSetScores() {
+      var teamASetWin = parseInt(document.getElementById('teamASetWin').innerText);
+      var teamBSetWin = parseInt(document.getElementById('teamBSetWin').innerText);
+      var setScoresElement = document.getElementById('setScores');
+
+      setScoresElement.innerText = '';
+    }
+
+    function resetPoints() {
+      document.getElementById('teamAPoints').innerText = 0;
+      document.getElementById('teamBPoints').innerText = 0;
+    }
+
+    function resetScore() {
+      var matchNumberElement = document.getElementById('matchNumber');
+      var teamALabelElement = document.getElementById('teamALabel');
+      var teamBLabelElement = document.getElementById('teamBLabel');
+
+      matchNumberElement.contentEditable = true;
+      teamALabelElement.contentEditable = true;
+      teamBLabelElement.contentEditable = true;
+
+      document.getElementById('teamAPoints').innerText = 0;
+      document.getElementById('teamBPoints').innerText = 0;
+      document.getElementById('teamASetWin').innerText = 0;
+      document.getElementById('teamBSetWin').innerText = 0;
+      document.getElementById('setScores').innerText = '';
+      document.getElementById('matchWinner').innerText = 'None';
+      document.getElementById('teamAName').value = '';
+      document.getElementById('teamBName').value = '';
+    }
+
+    function checkMatchWinner(matchWinnerElement) {
+      var teamASetWin = parseInt(document.getElementById('teamASetWin').innerText);
+      var teamBSetWin = parseInt(document.getElementById('teamBSetWin').innerText);
+
+      if (teamASetWin === 2 || teamBSetWin === 2) {
+        var matchNumberElement = document.getElementById('matchNumber');
+        var teamALabelElement = document.getElementById('teamALabel');
+        var teamBLabelElement = document.getElementById('teamBLabel');
+
+        matchNumberElement.contentEditable = false;
+        teamALabelElement.contentEditable = false;
+        teamBLabelElement.contentEditable = false;
+
+        matchWinnerElement.innerText = '' + (teamASetWin === 2 ? 'Team A' : 'Team B');
+        document.getElementById('updateBox').style.border = '2px solid #4caf50';
+      }
+    }
+  </script>
+
+</body>
+</html>
