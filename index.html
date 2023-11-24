@@ -12,12 +12,15 @@
     }
 
     body {
-      font-family: 'INDIA2023', Arial, sans-serif;
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #faceff;
-      font-size: 20px;
+      font-family: 'INDIA2023', sans-serif;
+            text-align: center;
+            background-color: #faceff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+	    margin-left:10px;
+	    margin-right:10px;
+	    font-size: 19.5px;
     }
 
     h2 {
@@ -110,14 +113,14 @@
 }
 
     header {
-      text-align: center;
-      margin-bottom: 10px;
-      background-color: #DF329E;
-      color: #2D036E;
-      padding: 0.5px;
-      border-radius: 5px;
-      width: 100%;
-    }
+            background-color: #DF329E;
+            padding: 0px;
+            color: #2D036E;
+            font-size: 25px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+	    position: sticky;
+        }
 
     re {
       color: #DF329E;
@@ -164,11 +167,11 @@
     <h2>
       <select id="teamAFlag" onchange="updateFlag('teamAFlag', 'teamAFlagImage', 'teamALabel')">
         <option value="">Select flag</option>
-        <option value="gbr.png">GREAT BRITAIN</option>
-        <option value="chn.png">CHINA</option>
-        <option value="arg.png">ARGENTINA</option>
-        <option value="ned.png">NETHERLANDS</option>
-        <option value="gua.png">GUATEMALA</option>
+        <option value="gbr.png">Great Britain</option>
+        <option value="chn.png">China</option>
+        <option value="arg.png">Argentina</option>
+        <option value="ned.png">Netherlands</option>
+        <option value="gua.png">Guatemala</option>
       </select>
       <img id="teamAFlagImage" src="flag1.png" alt="">
     </h2>
@@ -177,11 +180,11 @@
       <img id="teamBFlagImage" src="flag1.png" alt="">
       <select id="teamBFlag" onchange="updateFlag('teamBFlag', 'teamBFlagImage', 'teamBLabel')">
         <option value="">Select flag</option>
-        <option value="gbr.png">GREAT BRITAIN</option>
-        <option value="chn.png">CHINA</option>
-        <option value="arg.png">ARGENTINA</option>
-        <option value="ned.png">NETHERLANDS</option>
-        <option value="gua.png">GUATEMALA</option>
+        <option value="gbr.png">Great Britain</option>
+        <option value="chn.png">China</option>
+        <option value="arg.png">Argentina</option>
+        <option value="ned.png">Netherlands</option>
+        <option value="gua.png">Guatemala</option>
       </select>
     </h2>
   </div>
